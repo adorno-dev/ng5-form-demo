@@ -1,0 +1,80 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-horizontal">
+
+  <div class="form-group" [ngClass]="applyCssError(name)">
+    <div class="col-sm-12">
+      <label for="name" class="control-label">Name</label>
+    </div>
+    <div class="col-sm-12">
+      <!-- <input type="text" class="form-control" placeholder="Name" name="name" [ngModel]="profile.name" required #debug> <div>{{debug.className}}</div> -->
+      <input type="text" class="form-control" placeholder="Name" name="name" [ngModel]="profile.name" required #name="ngModel" value="">
+      <app-field-control-error [hasError]="validateField(name)" message="Name is required."></app-field-control-error>
+    </div>
+  </div>
+
+  <div class="form-group" [ngClass]="applyCssError(email)">
+    <div class="col-sm-12">
+      <label for="email" class="control-label">Email</label>
+    </div>
+    <div class="col-sm-12">
+      <!-- <input type="text" class="form-control" placeholder="Email" name="email" [ngModel]="profile.email" required pattern="<type the regex here>"> -->
+      <input type="text" class="form-control" placeholder="Email" name="email" [ngModel]="profile.email" required email #email="ngModel">
+      <app-field-control-error [hasError]="validateField(email)" message="Email is required."></app-field-control-error>
+    </div>
+  </div>
+
+  <div ngModelGroup="address">
+    <div class="form-group" [ngClass]="applyCssError(cep)">
+      <div class="col-md-3">
+        <label for="cep" class="control-label">CEP</label>
+        <input type="text" class="form-control" name="cep" required ngModel required #cep="ngModel" (blur)="checkCEP($event.target.value, f)">
+        <app-field-control-error [hasError]="validateField(cep)" message="CEP is required."></app-field-control-error>
+      </div>
+      <div class="col-md-3" [ngClass]="applyCssError(number)">
+        <label for="number" class="control-label">Number</label>
+        <input type="text" class="form-control" name="number" required ngModel required #number="ngModel">
+        <app-field-control-error [hasError]="validateField(number)" message="Number is required."></app-field-control-error>
+      </div>
+      <div class="col-md-6">
+        <label for="extra" class="control-label">Extra</label>
+        <input type="text" class="form-control" name="extra" ngModel required #extra="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="applyCssError(address)">
+      <div class="col-sm-12">
+        <label for="address" class="control-label">Address</label>
+      </div>
+      <div class="col-sm-12">
+        <!-- <input type="text" class="form-control" placeholder="address" address="address" [ngModel]="profile.address" required #debug> <div>{{debug.classaddress}}</div> -->
+        <input type="text" class="form-control" name="address" ngModel required
+          #address="ngModel" readonly>
+        <app-field-control-error [hasError]="validateField(address)" message="Address is required."></app-field-control-error>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-5" [ngClass]="applyCssError(district)">
+        <label for="district" class="control-label">District</label>
+        <input type="text" class="form-control" name="district" required ngModel required #district="ngModel">
+        <app-field-control-error [hasError]="validateField(district)" message="District is required."></app-field-control-error>
+      </div>
+      <div class="col-md-4" [ngClass]="applyCssError(city)">
+        <label for="city" class="control-label">City</label>
+        <input type="text" class="form-control" name="city" required ngModel required #city="ngModel">
+        <app-field-control-error [hasError]="validateField(city)" message="City is required."></app-field-control-error>
+      </div>
+      <div class="col-md-3" [ngClass]="applyCssError(state)">
+        <label for="state" class="control-label">State</label>
+        <input type="text" class="form-control" name="state" required ngModel required #state="ngModel">
+        <app-field-control-error [hasError]="validateField(state)" message="State is required."></app-field-control-error>
+      </div>
+    </div>
+
+  </div>
+
+  <button type="reset" class="btn btn-default">Cancel</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+
+  <app-template-driven-debug [form]="f"></app-template-driven-debug>
+
+</form>

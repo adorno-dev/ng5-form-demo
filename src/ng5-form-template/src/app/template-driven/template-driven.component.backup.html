@@ -1,0 +1,145 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-horizontal">
+
+  <!-- [name] -->
+  <div class="form-group" [class.has-error]="!name.valid && name.touched" [class.has-feedback]="!name.valid && name.touched">
+    <!-- input -->
+    <div class="col-sm-12">
+      <label for="name" class="control-label">Name</label>
+    </div>
+    <div class="col-sm-12">
+      <!-- <input type="text" class="form-control" placeholder="Name" name="name" [ngModel]="profile.name" required #debug> <div>{{debug.className}}</div> -->
+      <input type="text" class="form-control" placeholder="Name" name="name" [ngModel]="profile.name" required #name="ngModel">
+      <!-- validation -->
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!name.valid && name.touched"></span>
+      <span id="name" class="sr-only" *ngIf="!name.valid && name.touched">(error)</span>
+      <div class="alert alert-danger" *ngIf="!name.valid && name.touched">Name is required.</div>
+      <!-- /validation -->
+    </div>
+    <!-- /input -->
+  </div>
+  <!-- [/name] -->
+
+  <!-- [email] -->
+  <div class="form-group" [class.has-error]="!email.valid && email.touched" [class.has-feedback]="!email.valid && email.touched">
+    <!-- input -->
+    <div class="col-sm-12">
+      <label for="email" class="control-label">Email</label>
+    </div>
+    <div class="col-sm-12">
+      <!-- <input type="text" class="form-control" placeholder="Email" name="email" [ngModel]="profile.email" required pattern="<type the regex here>"> -->
+      <input type="text" class="form-control" placeholder="Email" name="email" [ngModel]="profile.email" required email #email="ngModel">
+      <!-- /input -->
+      <!-- validation -->
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!email.valid && email.touched"></span>
+      <span class="sr-only" *ngIf="!email.valid && email.touched">(error)</span>
+      <div class="alert alert-danger" *ngIf="!email.valid && email.touched">Email is required.</div>
+      <!-- /validation -->
+    </div>
+  </div>
+  <!-- [/email] -->
+
+  <!-- [cep] -->
+  <div class="form-group" [class.has-error]="!cep.valid && cep.touched" [class.has-feedback]="!cep.valid && cep.touched">
+    <!-- input -->
+    <div class="col-md-3">
+      <label for="cep" class="control-label">CEP</label>
+      <input type="text" class="form-control" name="cep" required ngModel required #cep="ngModel">
+      <!-- validation -->
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!cep.valid && cep.touched"></span>
+      <span class="sr-only" *ngIf="!cep.valid && cep.touched">(error)</span>
+      <div class="alert alert-danger" *ngIf="!cep.valid && cep.touched">CEP is required.</div>
+      <!-- /validation -->
+    </div>
+    <!-- /input -->
+
+    <!-- input -->
+    <div class="col-md-3" [class.has-error]="!number.valid && number.touched" [class.has-feedback]="!number.valid && number.touched">
+      <label for="number" class="control-label">Number</label>
+      <input type="text" class="form-control" name="number" required ngModel required #number="ngModel">
+      <!-- validation -->
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!number.valid && number.touched"></span>
+      <span class="sr-only" *ngIf="!number.valid && number.touched">(error)</span>
+      <div class="alert alert-danger" *ngIf="!number.valid && number.touched">number is required.</div>
+      <!-- /validation -->
+    </div>
+    <!-- /input -->
+
+    <!-- input -->
+    <div class="col-md-6">
+      <label for="extra" class="control-label">Extra</label>
+      <input type="text" class="form-control" name="extra" ngModel required #extra="ngModel">
+    </div>
+    <!-- /input -->
+
+  </div>
+  <!-- [/cep] -->
+
+  <!-- [address] -->
+  <div class="form-group" [class.has-error]="!address.valid && address.touched" [class.has-feedback]="!address.valid && address.touched">
+    <!-- input -->
+    <div class="col-sm-12">
+      <label for="address" class="control-label">Address</label>
+    </div>
+    <div class="col-sm-12">
+      <!-- <input type="text" class="form-control" placeholder="address" address="address" [ngModel]="profile.address" required #debug> <div>{{debug.classaddress}}</div> -->
+      <input type="text" class="form-control" placeholder="address" name="address" [ngModel]="profile.address" required #address="ngModel"
+        readonly>
+      <!-- validation -->
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!address.valid && address.touched"></span>
+      <span id="address" class="sr-only" *ngIf="!address.valid && address.touched">(error)</span>
+      <div class="alert alert-danger" *ngIf="!address.valid && address.touched">address is required.</div>
+      <!-- /validation -->
+    </div>
+    <!-- /input -->
+  </div>
+  <!-- [/address] -->
+
+  <div class="form-group">
+
+    <!-- input -->
+    <div class="col-md-5" [class.has-error]="!district.valid && district.touched" [class.has-feedback]="!district.valid && district.touched">
+      <label for="district" class="control-label">District</label>
+      <input type="text" class="form-control" name="district" required ngModel required #district="ngModel">
+      <!-- validation -->
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!district.valid && district.touched"></span>
+      <span class="sr-only" *ngIf="!district.valid && district.touched">(error)</span>
+      <div class="alert alert-danger" *ngIf="!district.valid && district.touched">district is required.</div>
+      <!-- /validation -->
+    </div>
+    <!-- /input -->
+
+    <!-- input -->
+    <div class="col-md-4" [class.has-error]="!city.valid && city.touched" [class.has-feedback]="!city.valid && city.touched">
+      <label for="city" class="control-label">City</label>
+      <input type="text" class="form-control" name="city" required ngModel required #city="ngModel">
+      <!-- validation -->
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!city.valid && city.touched"></span>
+      <span class="sr-only" *ngIf="!city.valid && city.touched">(error)</span>
+      <div class="alert alert-danger" *ngIf="!city.valid && city.touched">city is required.</div>
+      <!-- /validation -->
+    </div>
+    <!-- /input -->
+
+    <!-- input -->
+    <div class="col-md-3" [class.has-error]="!state.valid && state.touched" [class.has-feedback]="!state.valid && state.touched">
+      <label for="state" class="control-label">State</label>
+      <input type="text" class="form-control" name="state" required ngModel required #state="ngModel">
+      <!-- validation -->
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!state.valid && state.touched"></span>
+      <span class="sr-only" *ngIf="!state.valid && state.touched">(error)</span>
+      <div class="alert alert-danger" *ngIf="!state.valid && state.touched">state is required.</div>
+      <!-- /validation -->
+    </div>
+    <!-- /input -->
+
+  </div>
+
+  <!-- [action] -->
+  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+  <!-- [/action] -->
+
+  <!-- [debug] -->
+  <app-template-driven-debug [form]="f"></app-template-driven-debug>
+  <!-- [/debug] -->
+
+</form>

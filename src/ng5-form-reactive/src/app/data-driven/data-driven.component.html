@@ -1,0 +1,79 @@
+<form class="form-horizontal" (ngSubmit)="onSubmit()" [formGroup]="form">
+
+  <div class="form-group" [ngClass]="onCssValidation('name')">
+    <div class="col-sm-12">
+      <label for="name" class="control-label">Name</label>
+    </div>
+    <div class="col-sm-12">
+      <input type="text" class="form-control" placeholder="Name" formControlName="name">
+      <app-field-control-error [hasError]="onValidTouched('name')" message="Name is required."></app-field-control-error>
+    </div>
+  </div>
+
+  <div class="form-group" [ngClass]="onCssValidation('email')">
+    <div class="col-sm-12">
+      <label for="email" class="control-label">Email</label>
+    </div>
+    <div class="col-sm-12">
+      <input type="text" class="form-control" placeholder="Email" formControlName="email">
+      <app-field-control-error [hasError]="onValidTouched('email')" message="Email is required."></app-field-control-error>
+      <app-field-control-error [hasError]="onInvalidEmail()" message="Email is invalid."></app-field-control-error>
+    </div>
+  </div>
+
+  <div formGroupName="address">
+    <!-- both onCssValidation and onValidTouched needs to use this.form.get(<string argument>). this.form.controllers[<can't work>] -->
+    <div class="form-group" [ngClass]="onCssValidation('address.cep')">
+      <div class="col-md-3">
+        <label for="cep" class="control-label">CEP</label>
+        <input type="text" class="form-control" placeholder="CEP" formControlName="cep" (blur)="checkCEP()">
+        <app-field-control-error [hasError]="onValidTouched('address.cep')" message="CEP is required."></app-field-control-error>
+      </div>
+      <div class="col-md-3" [ngClass]="onCssValidation('address.number')">
+        <label for="number" class="control-label">Number</label>
+        <input type="text" class="form-control" placeholder="Number" formControlName="number">
+        <app-field-control-error [hasError]="onValidTouched('address.number')" message="Number is required."></app-field-control-error>
+      </div>
+      <div class="col-md-6">
+        <label for="extra" class="control-label">Extra</label>
+        <input type="text" class="form-control" placeholder="Extra" formControlName="extra">
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="onCssValidation('address.address')">
+      <div class="col-sm-12">
+        <label for="address" class="control-label">Address</label>
+      </div>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" placeholder="Address" formControlName="address" readonly>
+        <app-field-control-error [hasError]="onValidTouched('address.address')" message="Address is required."></app-field-control-error>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-5" [ngClass]="onCssValidation('address.district')">
+        <label for="district" class="control-label">District</label>
+        <input type="text" class="form-control" placeholder="District" formControlName="district">
+        <app-field-control-error [hasError]="onValidTouched('address.district')" message="District is required."></app-field-control-error>
+      </div>
+      <div class="col-md-4" [ngClass]="onCssValidation('address.city')">
+        <label for="city" class="control-label">City</label>
+        <input type="text" class="form-control" placeholder="City" formControlName="city">
+        <app-field-control-error [hasError]="onValidTouched('address.city')" message="City is required."></app-field-control-error>
+      </div>
+      <div class="col-md-3" [ngClass]="onCssValidation('address.state')">
+        <label for="state" class="control-label">State</label>
+        <input type="text" class="form-control" placeholder="State" formControlName="state">
+        <!-- <app-field-control-error [hasError]="form.controls['address'].controls['state']" message="State is required."></app-field-control-error> -->
+        <app-field-control-error [hasError]="onValidTouched('address.state')" message="State is required."></app-field-control-error>
+      </div>
+    </div>
+  </div> 
+
+  <button type="reset" class="btn btn-default">Cancel</button>
+  <!-- <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button> -->
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+  <app-data-driven-debug [form]="form"></app-data-driven-debug>
+
+</form>

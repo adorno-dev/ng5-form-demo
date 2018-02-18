@@ -6,7 +6,8 @@
     </div>
     <div class="col-sm-12">
       <!-- <input type="text" class="form-control" placeholder="Name" name="name" [ngModel]="profile.name" required #debug> <div>{{debug.className}}</div> -->
-      <input type="text" class="form-control" placeholder="Name" name="name" [ngModel]="profile.name" required #name="ngModel" value="">
+      <input type="text" class="form-control" placeholder="Name" name="name" [ngModel]="profile.name" required #name="ngModel"
+        value="">
       <app-field-control-error [hasError]="validateField(name)" message="Name is required."></app-field-control-error>
     </div>
   </div>
@@ -46,8 +47,7 @@
       </div>
       <div class="col-sm-12">
         <!-- <input type="text" class="form-control" placeholder="address" address="address" [ngModel]="profile.address" required #debug> <div>{{debug.classaddress}}</div> -->
-        <input type="text" class="form-control" name="address" ngModel required
-          #address="ngModel" readonly>
+        <input type="text" class="form-control" name="address" ngModel required #address="ngModel" readonly>
         <app-field-control-error [hasError]="validateField(address)" message="Address is required."></app-field-control-error>
       </div>
     </div>
